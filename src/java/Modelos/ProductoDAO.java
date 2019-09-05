@@ -23,7 +23,7 @@ public class ProductoDAO {
           rs=ps.executeQuery();
           while (rs.next()) {
               p.setId(rs.getInt(1));
-              p.setNombre(rs.getString(2));
+              p.setNom(rs.getString(2));
               p.setPrecio(rs.getDouble(3));
               p.setStock(rs.getInt(4));
               
@@ -55,23 +55,23 @@ public class ProductoDAO {
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while (rs.next()) {
-                Producto pr=new Producto();
-                pr.setId(rs.getInt(1));
-                pr.setNom(rs.getString(2));  
-                pr.setFecha_vencimiento(rs.getString(3));
-                pr.setPrecio(rs.getDouble(4));
-                pr.setStock(rs.getInt(5));
-                pr.setLaboratorio(rs.getString(6));
-                pr.setTmedicamento(rs.getString(7));
+                Producto p=new Producto();
+                p.setId(rs.getInt(1));
+                p.setNom(rs.getString(2));  
+                p.setFecha_vencimiento(rs.getString(3));
+                p.setPrecio(rs.getDouble(4));
+                p.setStock(rs.getInt(5));
+                p.setLaboratorio(rs.getString(6));
+                p.setTmedicamento(rs.getString(7));
                 
-                lista.add(pr);
+                lista.add(p);
             }
         } catch (Exception e) {
         }
         return lista;
     }
     public int agregar(Producto p){ 
-        String sql="insert into producto(nombre,Fecha_Vencimiento,Precio,Stock,Laboratorio,Tmedicamento)values(?,?,?,?,?,?)";
+        String sql="insert into producto(nombre,fecha_vencimiento,precio,stock,laboratorio,Tmedicamento)values(?,?,?,?,?,?)";
         try {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
@@ -81,9 +81,10 @@ public class ProductoDAO {
             ps.setInt(4, p.getStock());
             ps.setString(5, p.getLaboratorio());
             ps.setString(6, p.getTmedicamento());
-                  
             ps.executeUpdate();
+            r=32;
         } catch (Exception e) {
+            String ex= e.getMessage();
         }
         return r;
         
@@ -97,7 +98,7 @@ public class ProductoDAO {
             rs=ps.executeQuery();
             while (rs.next()) {
                 pr.setId(rs.getInt(1));
-                pr.setNombre(rs.getString(2));               
+                pr.setNom(rs.getString(2));               
                 pr.setPrecio(rs.getDouble(3));
                 pr.setStock(rs.getInt(4));
                  
@@ -107,14 +108,14 @@ public class ProductoDAO {
         return pr;
     }
     public int actualizar(Producto em){
-        String sql="update producto set Nombres=?, Precio=?, Stock=?, Estado=? where IdProducto=?";
+        String sql="update producto set Nombres=?, Precio=?, Stock=?, Fecha_Vencimiento=? where IdProducto=?";
         try {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
-            ps.setString(1, em.getNombre());
+            ps.setString(1, em.getNom());
             ps.setDouble(2, em.getPrecio());
             ps.setInt(3, em.getStock());
-                       
+            ps.setString(3, em.getFecha_Vencimiento());
             ps.setInt(5, em.getId());
             ps.executeUpdate();
         } catch (Exception e) {

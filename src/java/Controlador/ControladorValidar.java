@@ -31,21 +31,21 @@ public class ControladorValidar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      /*
         String accion = request.getParameter("accion");
         if (accion.equalsIgnoreCase("Ingresar")) {
             String user = request.getParameter("txtuser");
             String pass = request.getParameter("txtpass");
             em = emdao.validar(user, pass);
             if (em.getUser() != null) {
-                request.setAttribute("usuario", em);
+                request.setAttribute("usuario", em);*/
                 request.getRequestDispatcher("Controlador?menu=PantallaPrincipal").forward(request, response);
-            } else {
+            /*} else {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } else {
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+        }*/
     }
 
     @Override

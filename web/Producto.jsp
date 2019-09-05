@@ -15,7 +15,7 @@
                         <form action="Controlador?menu=Producto" method="POST">
                             <div class="form-group">
                                 <label>Producto</label>
-                                <input type="text" value="${producto.getNom()}" name="txtProducto" class="form-control">
+                                <input type="text" value="${producto.getNom()}" name="txtnombre" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Fecha Vencimiento</label>
